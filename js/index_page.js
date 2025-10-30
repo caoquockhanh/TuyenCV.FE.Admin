@@ -23,10 +23,6 @@ togglePwBtn2.addEventListener("click", function () {
     }
 });
 
-//Khai báo url
-var url = 'http://localhost:8080/';
-
-
 
 // Xử lý sự kiện submit form đăng nhập
 $(document).ready(function () {
@@ -41,9 +37,10 @@ $(document).ready(function () {
         
         loginAPI(email, password).then((res) =>{
             console.log(res.data);
+            saveTokenToCookie(res.data.token);
             showSuccessAlert("Đăng nhập thành công!", 'success');
             setTimeout(() => {
-                window.location.href = './asset/layout/layout.html';
+                // window.location.href = './asset/layout/layout.html';
             }, 2000);
         }).catch(() => {
             showSuccessAlert("Đăng nhập thất bại!", 'error');
