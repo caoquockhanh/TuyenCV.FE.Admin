@@ -43,7 +43,7 @@ $(document).ready(function () {
             console.log(res.data);
             showSuccessAlert("Đăng nhập thành công!", 'success');
             setTimeout(() => {
-                window.location.href = './pages/dashboard.html';
+                window.location.href = './asset/layout/layout.html';
             }, 2000);
         }).catch(() => {
             showSuccessAlert("Đăng nhập thất bại!", 'error');
