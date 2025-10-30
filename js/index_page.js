@@ -37,26 +37,39 @@ $(document).ready(function () {
         e.preventDefault();
         var email = $('#email').val();
         var password = $('#pass').val();
-        // Thực hiện gửi dữ liệu đăng nhập lên server qua AJAX
-
-        $.ajax({
-            url: url + 'api/auth/signin',
-            type: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            data: JSON.stringify({
-                "email": email,
-                "password": password
-            }),
-            success: function (e) {
-                console.log(e);
-                showSuccessAlert("Đăng nhập thành công!", 'success');
-            },
-            error: function (err) {
-                console.log(err);
-                showSuccessAlert("Đăng nhập thất bại!", 'error');
-            }
+        // Thực hiện gửi dữ liệu đăng nhập lên server qua Axios
+        
+        loginAPI(email, password).then((res) =>{
+            console.log(res.data);
+            showSuccessAlert("Đăng nhập thành công!", 'success');
+            setTimeout(() => {
+                window.location.href = './pages/dashboard.html';
+            }, 2000);
+        }).catch(() => {
+            showSuccessAlert("Đăng nhập thất bại!", 'error');
         })
+
+        // $.ajax({
+        //     url: url + 'api/auth/signin',
+        //     type: 'POST',
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     data: JSON.stringify({
+        //         "email": email,
+        //         "password": password
+        //     }),
+        //     success: function (e) {
+        //         console.log(e);
+        //         showSuccessAlert("Đăng nhập thành công!", 'success');
+        //         setTimeout(() => {
+        //             window.location.href = './pages/dashboard.html';
+        //         }, 2000)
+        //     },
+        //     error: function (err) {
+        //         console.log(err);
+        //         showSuccessAlert("Đăng nhập thất bại!", 'error');
+        //     }
+        // })
     });
 });
