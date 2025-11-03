@@ -26,7 +26,7 @@ togglePwBtn2.addEventListener("click", function () {
 
 // Xử lý sự kiện submit form đăng nhập
 $(document).ready(function () {
-    
+
 
 
     $('#form_login').on('submit', function (e) {
@@ -34,14 +34,19 @@ $(document).ready(function () {
         var email = $('#email').val();
         var password = $('#pass').val();
         // Thực hiện gửi dữ liệu đăng nhập lên server qua Axios
-        
-        loginAPI(email, password).then((res) =>{
-            console.log(res.data);
-            saveTokenToCookie(res.data.token);
-            showSuccessAlert("Đăng nhập thành công!", 'success');
-            setTimeout(() => {
-                // window.location.href = './asset/layout/layout.html';
-            }, 2000);
+
+        loginAPI(email, password).then((res) => {
+            //console.log(res.data);
+            var checkRole = res.data.user.role;
+            if (checkRole === "ADMIN") {
+                saveTokenToCookie(res.data.token);
+                showSuccessAlert("Đăng nhập thành công!", 'success');
+                setTimeout(() => {
+                    // window.location.href = './asset/layout/layout.html';
+                }, 2000);
+            } else {
+                showSuccessAlert("Bạn không có quyền truy cập!", 'error');
+            }
         }).catch(() => {
             showSuccessAlert("Đăng nhập thất bại!", 'error');
         })
