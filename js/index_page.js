@@ -42,7 +42,7 @@ $(document).ready(function () {
                 saveTokenToCookie(res.data.token);
                 showSuccessAlert("Đăng nhập thành công!", 'success');
                 setTimeout(() => {
-                    // window.location.href = './asset/layout/layout.html';
+                    window.location.href = './asset/layout/layout.html';
                 }, 2000);
             } else {
                 showSuccessAlert("Bạn không có quyền truy cập!", 'error');
