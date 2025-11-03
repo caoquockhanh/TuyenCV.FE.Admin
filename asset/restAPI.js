@@ -26,3 +26,18 @@ function loginAPI(email, password) {
         })
     });
 }
+
+// Call get user info API
+function getUserInfoAPI() {
+  const token = getTokenFromCookie();
+  return axios({
+    method: 'GET',
+    url: url + 'api/auth/profile',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+  })
+}
+
+// Call get all users API
