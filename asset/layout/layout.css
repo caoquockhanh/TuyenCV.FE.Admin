@@ -45,7 +45,7 @@ body {
     cursor: pointer;
     border-radius: 5px;
     font-weight: bold;
-    color: #2563EB;
+    color: #344054;
     transition: background-color 0.3s;
 }
 
@@ -54,6 +54,7 @@ body {
 }
 #sidebar ul li.active {
     background-color: #ECF3FF;
+    color: #2563EB;
 }
 
 #navigation {
@@ -69,10 +70,47 @@ body {
     position: relative;
 }
 
-#nav-right span {
-    margin-left: 20px;
+#navigation #nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #6B7280;
     cursor: pointer;
-    color: #4B5563;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #344054;
+    font-weight: bold;
+}
+
+.fa-moon, .fa-bell {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    width: 40px;
+    height: 40px;
+    color: #6B7280;
+    border-radius: 50%;
+    padding: 10.5px;
+    border: 1px solid #E4E7EC;
+}
+
+.fa-moon:hover, .fa-bell:hover {
+    background-color: #F2F4F7;
+    color: #344054;
+}
+
+.fa-chevron-down, .fa-chevron-up {
+    margin-left: 5px;
+    color: #9CA3AF;
+}
+
+.fa-chevron-down:hover, .fa-chevron-up:hover {
+    color: #6B7280;
 }
 
 #main-content {
@@ -81,3 +119,85 @@ body {
     background-color: #F9FAFB;
 }
 
+.infoUser {
+    width: 250px;
+    display: none;
+    position: absolute;
+    top: 67px;
+    right: 20px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 10px;
+    color: #4A5567;
+}
+
+.info_content {
+    padding: 10px;
+}
+
+.info_head {
+    font-weight: bold;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.info_item {
+    margin-bottom: 5px;
+    color: #344054;
+    font-size: 0.9em;
+}
+
+.fa-envelope, .info_email {
+    font-weight: normal;
+    font-size: 0.9em;
+}
+
+.info_control {
+    padding-top: 10px;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.list-control {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.info_control a {
+    width: 100%;
+    text-align: left;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.info_control a:hover {
+   background-color: #F2F4F7;
+   color: #344054;
+}
+
+.info_signout {
+    padding-top: 10px;
+    width: 100%;
+    display: flex;
+}
+
+.info_signout a {
+    width: 100%;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+}
+
+.info_signout a:hover {
+    background-color: #F87171;
+    color: #FFFFFF;
+}
