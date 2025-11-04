@@ -25,9 +25,9 @@ function displayUserName() {
     const [firstName, ...rest] = userName.split(" ");
     const middleName = rest.length === 1 ? "" : rest.slice(0, -1).join(" ");
     const lastName = rest.at(-1);
-    const parseWorker = {firstName, middleName, lastName};
+    const parseWorker = { firstName, middleName, lastName };
     //console.log(parseWorker);
-    
+
     // Hiển thị tên người dùng lên giao diện
     document.querySelector('.name').textContent = parseWorker.lastName;
 
@@ -45,9 +45,11 @@ function toggleChevron() {
   const chevron = $('.info');
   const chevronDown = $('.fa-chevron-down');
   const chevronUp = $('.fa-chevron-up');
-  let isUp = false;
-  
+  // lưu trạng thái hiện tại vào DOM để các handler khác có thể truy cập
+  chevron.data('isUp', false);
+
   chevron.click(() => {
+    const isUp = chevron.data('isUp');
     if (!isUp) {
       chevronDown.hide();
       chevronUp.show();
@@ -55,7 +57,7 @@ function toggleChevron() {
       chevronUp.hide();
       chevronDown.show();
     }
-    isUp = !isUp;
+    chevron.data('isUp', !isUp);
   });
 };
 
@@ -63,8 +65,27 @@ function toggleChevron() {
 function modalInfoUser() {
   const infoUser = $('.info');
   const infoUserModal = $('.infoUser');
-  infoUser.click(function() {
+  const chevronDown = $('.fa-chevron-down');
+  const chevronUp = $('.fa-chevron-up');
+
+  // Khi click vào vùng .info, ngăn sự kiện lan ra document và toggle modal
+  infoUser.click(function (e) {
+    e.stopPropagation();
     infoUserModal.toggle();
+  });
+
+  // Click vào document (bất cứ chỗ nào ngoài .info và .infoUser) sẽ đóng modal nếu đang mở
+  $(document).click(function (e) {
+    if (infoUserModal.is(':visible')) {
+      // Nếu click không phải trong modal và không phải trên nút .info
+      if ($(e.target).closest('.infoUser').length === 0 && $(e.target).closest('.info').length === 0) {
+        infoUserModal.hide();
+        // reset chevron icons và trạng thái
+        chevronUp.hide();
+        chevronDown.show();
+        infoUser.data('isUp', false);
+      }
+    }
   });
 }
 
@@ -76,5 +97,4 @@ window.onload = () => {
   loadPage('../../pages/dashboardPage.html', defaultTab);
   toggleChevron()
   modalInfoUser()
-  
 };
