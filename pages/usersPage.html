@@ -1,1 +1,105 @@
-<p>day là user</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+</head>
+
+<body>
+    <div id="content">
+        <div class="content_head">
+            <div class="left">
+                <h2>User Table</h2>
+            </div>
+            <div class="right">
+                <a href="#">Home <i class="fa-solid fa-chevron-right"></i></a>
+                <span>User</span>
+            </div>
+
+        </div>
+        <div class="btn_nut">
+            <button type="button" class="adduser_btn btn-primary"><i class="fa-solid fa-user-plus"></i> Add
+                User</button>
+        </div>
+        <div class="content_container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Họ và Tên</th>
+                        <th>Giới Tính</th>
+                        <th>Ngày Sinh</th>
+                        <th>Chức Vụ</th>
+                        <th>Hành Động</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- Data -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal Add User -->
+    <div class="modal_adduser">
+        <div class="modal">
+            <div class="modal_header">
+                <b>Add User</b>
+                <a><i class="fa-solid fa-x"></i></a>
+            </div>
+
+            <div class="modal_body">
+                <form action="" class="modal_list">
+                    <div class="list_info">
+                        <label for="">Email</label>
+                        <input type="email" placeholder="Enter Email...">
+                    </div>
+                    <div class="list_info">
+                        <label for="">Họ và Tên</label>
+                        <input type="text" placeholder="Enter Name...">
+                    </div>
+                    <div class="list_info">
+                        <label for="">Mật Khẩu</label>
+                        <input type="text" placeholder="Enter Password...">
+                    </div>
+                    <div class="list_info">
+                        <label for="">Ngày Sinh</label>
+                        <input type="date" name="" id="">
+                    </div>
+                    <div class="list_footer">
+                        <div class="footer_info">
+                            <label for="">Chức Vụ</label>
+                            <select name="" id="">
+                                <option value="" disabled selected hidden>Please select...</option>
+                                <option value="TRIAL">Trial</option>
+                                <option value="USER">User</option>
+                                <option value="ADMIN">Admin</option>
+                            </select>
+                        </div>
+                        <div class="footer_info">
+                            <label for="">Giới Tính</label>
+                            <select name="" id="gender">
+                                <option value="" disabled selected hidden>Please select...</option>
+                                <option value="male">Nam</option>
+                                <option value="female">Nữ</option>
+                                <option value="orther">Khác</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal_footer">
+                <button type="button" class="btn_add btn-secondary">Close</button>
+                <button type="button" class="btn_add btn-primary">Add</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

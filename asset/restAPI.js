@@ -9,6 +9,11 @@ function getTokenFromCookie() {
   return match ? match[2] : null;
 }
 
+//Delete Cookie function
+function deleteCookie(name) {
+  document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
 // url chung
 var url = 'http://localhost:8080/';
 
