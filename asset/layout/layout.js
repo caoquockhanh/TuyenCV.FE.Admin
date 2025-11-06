@@ -1,18 +1,18 @@
 // Hàm tải nội dung trang vào khu vực main-content
-function loadPage(page, element) {
-  fetch(page)
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('main-content').innerHTML = html;
-
-      // Đổi trạng thái active tab
-      const items = document.querySelectorAll('#sidebar ul li');
-      items.forEach(item => item.classList.remove('active'));
-      if (element) {
-        element.classList.add('active');
-      }
-    });
-}
+// function loadPage(page, element) {
+//   fetch(page)
+//     .then(res => res.text())
+//     .then(html => {
+//       document.getElementById('main-content').innerHTML = html;
+      
+//       // Đổi trạng thái active tab
+//       const items = document.querySelectorAll('#sidebar ul li');
+//       items.forEach(item => item.classList.remove('active'));
+//       if (element) {
+//         element.classList.add('active');
+//       }
+//     });
+// }
 
 // Lấy thông tin user và hiển thị tên lên giao diện
 function displayUserName() {
@@ -93,8 +93,8 @@ function modalInfoUser() {
 // Gọi hàm hiển thị tên người dùng khi tải trang
 window.onload = () => {
   displayUserName();
-  const defaultTab = document.querySelector('#sidebar ul li');
-  loadPage('../../pages/dashboardPage.html', defaultTab);
+  // const defaultTab = document.querySelector('#sidebar ul li');
+  // loadPage('../../pages/dashboardPage.html', defaultTab);
   toggleChevron()
   modalInfoUser()
 };

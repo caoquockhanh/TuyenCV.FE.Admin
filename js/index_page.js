@@ -1,6 +1,6 @@
-var pwInput = document.getElementById("pass");
-var togglePwBtn = document.getElementById("togglePassword");
-var togglePwBtn2 = document.getElementById("togglePassword2");
+const pwInput = document.getElementById("pass");
+const togglePwBtn = document.getElementById("togglePassword");
+const togglePwBtn2 = document.getElementById("togglePassword2");
 
 // Initially hide the "hide password" button
 if (pwInput.type === "password") {
@@ -27,8 +27,6 @@ togglePwBtn2.addEventListener("click", function () {
 // Xử lý sự kiện submit form đăng nhập
 $(document).ready(function () {
 
-
-
     $('#form_login').on('submit', function (e) {
         e.preventDefault();
         var email = $('#email').val();
@@ -42,7 +40,7 @@ $(document).ready(function () {
                 saveTokenToCookie(res.data.token);
                 showSuccessAlert("Đăng nhập thành công!", 'success');
                 setTimeout(() => {
-                    window.location.href = './asset/layout/layout.html';
+                    window.location.href = './../pages/dashboardPage.html';
                 }, 2000);
             } else {
                 showSuccessAlert("Bạn không có quyền truy cập!", 'error');
