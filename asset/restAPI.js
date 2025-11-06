@@ -14,6 +14,30 @@ function deleteCookie(name) {
   document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
+//Open Modal
+function openModal() {
+  const openModal = $('.btn_openModal');
+  const modalUser = $('.modal_adduser');
+
+  // 
+  openModal.click(() => {
+    modalUser.show();
+    $('.overlay').show();
+  })
+}
+
+// Close Modal
+function closeModal() {
+  const closeModal = $('.btn_closeModal');
+
+  //
+  closeModal.click(() => {
+    $('.modal_adduser').hide();
+    $('.overlay').hide();
+
+  })
+}
+
 // url chung
 var url = 'http://localhost:8080/';
 

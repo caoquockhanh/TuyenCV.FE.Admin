@@ -4,11 +4,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DashBoard</title>
+    <title>DashBoard Page</title>
+    <link rel="stylesheet" href="./../asset/layout/layout.css">
+    <!-- icon fa -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- ajax jquery-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript"></script>
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
 </head>
 
 <body>
-    <p>đay là DashBoard</p>
+    <!-- Sidebar -->
+    <div id="container">
+        <div class="logo">
+            <i class="fa-solid fa-toolbox"></i>
+            <span>TuyenCV Admin</span>
+        </div>
+        <div id="sidebar">
+            <ul>
+                <li><a class="active" href="./dashboardPage.html"><i class="fa-solid fa-house"></i> DashBoard</a></li>
+                <li><a href="./usersPage.html"><i class="fa-solid fa-user"></i> User</a></li>
+                <li><a href="./jobsPage.html"><i class="fa-solid fa-briefcase"></i> Job</a></li>
+                <li><a href="./settingPage.html"><i class="fa-solid fa-gear"></i> Setting</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div id="navigation">
+        <div id="nav-right">
+            <span><i class="fa-regular fa-moon"></i></i></span>
+            <span><i class="fa-regular fa-bell"></i></i></span>
+            <div class="info">
+                <span class="name"></span>
+                <i class="fa-solid fa-chevron-down"></i>
+                <i class="fa-solid fa-chevron-up" style="display: none;"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal info -->
+    <div class="infoUser">
+        <div class="info_content">
+            <div class="info_head">
+                <div class="info_item">
+                    <strong><i class="fa-regular fa-user"></i></strong>
+                    <span class="info_name"></span>
+                </div>
+                <div class="info_item">
+                    <strong><i class="fa-regular fa-envelope"></i></strong>
+                    <span class="info_email"></span>
+                </div>
+            </div>
+
+            <div class="info_control">
+                <div class="list-control">
+                    <a class="change_pass_btn"><i class="fa-solid fa-key"></i> Change Password</a>
+                </div>
+                <div class="list-control">
+                    <a class="edit_profile_btn"><i class="fa-solid fa-user-pen"></i> Edit Profile</a>
+                </div>
+                <div class="list-control">
+                    <a class="acc_setting_btn"><i class="fa-solid fa-gear"></i> Account Setting</a>
+                </div>
+                <div class="list-control">
+                    <a class="sp_btn"><i class="fa-solid fa-phone-volume"></i> Support</a>
+                </div>
+            </div>
+
+            <div class="info_signout">
+                <a class="logout_btn"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <!-- Nội dung trang sẽ được tải ở đây -->
+         <p>Đây là DashBoard</p>
+    </div>
+
+    <!-- js -->
+    <script src="./../asset/layout/layout.js"></script>
+    <script src="./../asset/restAPI.js"></script>
 </body>
 
 </html>
