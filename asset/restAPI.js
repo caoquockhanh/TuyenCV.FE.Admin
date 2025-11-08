@@ -23,8 +23,21 @@ function openModal() {
   openModal.click(() => {
     modalUser.show();
     $('.overlay').show();
+    $('#form_addUser')[0].reset();
+    $('#pw_group').show();
+    $('.btn_addUser').show();
+    $('.btn_updateUser').hide();
+    $('#inp_email').prop('disabled', false);
+    $('.modal_adduser').show();
   })
 }
+
+//Show Modal 
+function showModal() {
+  $('.modal_adduser').show();
+  $('.overlay').show();
+}
+
 
 // Close Modal
 function closeModal() {
@@ -38,7 +51,21 @@ function closeModal() {
   })
 }
 
-//click ngoài modal để đóng
+// Khi mở Modal để sửa User
+// function openEditUserModal(user) {
+//   $('#inp_name').val(user.name);
+//   $('#inp_email').val(user.email);
+//   $('#inp_date').val(user.dob);
+//   $('#sl_gender').val(user.gender);
+//   $('#sl_role').val(user.role);
+
+//   $('#inp_pw').hide(); // ẩn ô mật khẩu
+//   $('.btn_addUser').hide(); // ẩn nút Add
+//   $('.btn_updateUser').show(); // hiện nút Update
+//   $('#inp_email').prop('disabled', true); // không cho sửa email
+
+//   $('.modal_adduser').show();
+// }
 
 
 // url chung
@@ -99,8 +126,6 @@ function getAllUserAPI() {
 
 // Call post add user API
 function addUserAPI (name, email, password, dob, gender, role) {
-
-  const token = getTokenFromCookie();
   return axios({
     method: 'POST',
     url: url + 'api/auth/signup',
@@ -114,6 +139,40 @@ function addUserAPI (name, email, password, dob, gender, role) {
       "dob": dob,
       "gender": gender,
       "roleName": role
+    })
+  })
+}
+
+// Call API view 1 user
+function getOneUserAPI(id) {
+  const token = getTokenFromCookie();
+  return axios({
+    method: "GET",
+    url: url + `api/users/${id}`,
+    headers: {
+      'Authorization' : `Bearer ${token}`,
+      'Content-Type' : 'application/json',
+    },
+  })
+}
+
+// Call put API edit user
+function editUserAPI(name, dob, gender, roleId) {
+  const token = getTokenFromCookie();
+  return axios({
+    method: 'PUT',
+    url: url + `api/users/${id}`,
+    headers: {
+      'Authorization' : `Bearer ${token}`,
+      'Content-Type' : 'application/json',
+    },
+    data: JSON.stringify({
+      'name' : name,
+      'dob' : dob,
+      'gender' : gender,
+      'role' : {
+        'id' : roleId,
+      }
     })
   })
 }

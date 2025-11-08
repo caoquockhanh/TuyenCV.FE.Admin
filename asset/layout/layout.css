@@ -47,6 +47,22 @@ body {
     background-color: #5C636A;
 }
 
+.btn-success {
+    width: 140px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    background-color: #198754;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-success:hover {
+    background-color: #157347;
+}
+
 #container {
     display: flex;
     flex-direction: column;
@@ -321,12 +337,14 @@ td button {
 
 .btn_edit {
   background-color: #E0F2FE;
-  color: #2563EB;
+  color: #198754;
+  border: 1px solid #157347;
 }
 
 .btn_delete {
   background-color: #FEE2E2;
   color: #DC2626;
+  border: 1px solid #DC2626;
 }
 
 th{

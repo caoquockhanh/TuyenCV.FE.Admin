@@ -144,12 +144,12 @@
                             <label for="inp_name">Họ và Tên</label>
                             <input type="text" id="inp_name" placeholder="Enter Name...">
                         </div>
-                        <div class="list_info">
+                        <div class="list_info" id="pw_group">
                             <label for="inp_pw">Mật Khẩu</label>
                             <input type="text" id="inp_pw" placeholder="Enter Password...">
                         </div>
                         <div class="list_info">
-                            <label for="inp_date">Ngày Sinh</label>
+                            <label id="lb_date" for="inp_date">Ngày Sinh</label>
                             <input type="date" name="" id="inp_date">
                         </div>
                         <div class="list_footer">
@@ -157,9 +157,9 @@
                                 <label for="sl_role">Chức Vụ</label>
                                 <select name="" id="sl_role">
                                     <option value="" disabled selected hidden>Please select...</option>
-                                    <option value="TRIAL">Người dùng</option>
-                                    <option value="USER">Tuyển dụng</option>
-                                    <option value="ADMIN">Admin</option>
+                                    <option value="68eb36e92ed43f8a874cce94">Người dùng</option>
+                                    <option value="68eb37182ed43f8a874cce96">Tuyển dụng</option>
+                                    <option value="68eb37212ed43f8a874cce98">Admin</option>
                                 </select>
                             </div>
                             <div class="footer_info">
@@ -175,6 +175,7 @@
                 </div>
                 <div class="modal_footer">
                     <button type="button" class="btn_closeModal btn-secondary">Close</button>
+                    <button type="submit" class="btn_updateUser btn-success" style="display: none;">Update</button>
                     <button type="submit" class="btn_addUser btn-primary">Add</button>
                 </div>
                 </form>
