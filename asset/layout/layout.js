@@ -40,6 +40,20 @@ function displayUserName() {
   });
 }
 
+// Gọi API đăng xuất
+function btn_logOUt() {
+  logoutAPI().then((res) => {
+    //console.log(res);
+    showSuccessAlert("Đăng xuất thành công!", 'success');
+    setTimeout(() => {
+      deleteCookie('authToken');
+      location.href = './../../index.html';
+    }, 2000)
+  }).catch((err) => {
+    console.log(err);
+  })
+}
+
 // Xử lý sự nút down/up bên cạnh tên user
 function toggleChevron() {
   const chevron = $('.info');
@@ -95,6 +109,6 @@ window.onload = () => {
   displayUserName();
   // const defaultTab = document.querySelector('#sidebar ul li');
   // loadPage('../../pages/dashboardPage.html', defaultTab);
-  toggleChevron()
-  modalInfoUser()
+  toggleChevron();
+  modalInfoUser();
 };

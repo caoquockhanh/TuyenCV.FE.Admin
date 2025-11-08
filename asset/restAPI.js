@@ -59,6 +59,18 @@ function loginAPI(email, password) {
     });
 }
 
+// Call API logout
+function logoutAPI() {
+  const token = getTokenFromCookie();
+  return axios({
+    method: 'DELETE',
+    url: url + 'api/auth/logout',
+    headers: {
+      'Authorization' : `Bearer ${token}`,
+    },
+  })
+}
+
 // Call get user info API
 function getUserInfoAPI() {
   const token = getTokenFromCookie();
