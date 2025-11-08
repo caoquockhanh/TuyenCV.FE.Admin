@@ -13,9 +13,14 @@
     <script language="javascript" type="text/javascript"></script>
     <!-- Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <!-- Alert -->
+    <link rel="stylesheet" href="./../asset/alert/alert.css">
 </head>
 
 <body>
+    <!-- Import Alert HTML -->
+    <div id="alertBox" class="alert-success" style="display: none;"></div>
+    
     <!-- Sidebar -->
     <div id="container">
         <div class="logo">
@@ -82,105 +87,108 @@
 
     <div id="main-content">
         <!-- Nội dung trang sẽ được tải ở đây -->
-         <div id="content">
-        <div class="content_head">
-            <div class="left">
-                <h2>User Table</h2>
+        <div id="content">
+            <div class="content_head">
+                <div class="left">
+                    <h2>User Table</h2>
+                </div>
+                <div class="right">
+                    <a href="#">Home <i class="fa-solid fa-chevron-right"></i></a>
+                    <span>User</span>
+                </div>
+
             </div>
-            <div class="right">
-                <a href="#">Home <i class="fa-solid fa-chevron-right"></i></a>
-                <span>User</span>
+            <div class="btn_nut">
+                <button class="btn_openModal btn-primary"><i class="fa-solid fa-user-plus"></i> Add
+                    User</button>
+
             </div>
+            <div class="content_container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>Họ và Tên</th>
+                            <th>Giới Tính</th>
+                            <th>Ngày Sinh</th>
+                            <th>Chức Vụ</th>
+                            <th>Hành Động</th>
+                        </tr>
+                    </thead>
 
-        </div>
-        <div class="btn_nut">
-            <button class="btn_openModal btn-primary"><i class="fa-solid fa-user-plus"></i> Add
-                User</button>
-                
-        </div>
-        <div class="content_container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Email</th>
-                        <th>Họ và Tên</th>
-                        <th>Giới Tính</th>
-                        <th>Ngày Sinh</th>
-                        <th>Chức Vụ</th>
-                        <th>Hành Động</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <!-- Data -->
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- Lớp phủ mờ -->
-     <div class="overlay"></div>
-    <!-- Modal Add User -->
-    <div class="modal_adduser">
-        <div class="modal">
-            <div class="modal_header">
-                <b>Add User</b>
-                <a class="btn_closeModal"><i class="fa-solid fa-x"></i></a>
+                    <tbody>
+                        <!-- Data -->
+                    </tbody>
+                </table>
             </div>
+        </div>
 
-            <div class="modal_body">
-                <form action="" class="modal_list">
-                    <div class="list_info">
-                        <label for="">Email</label>
-                        <input type="email" placeholder="Enter Email...">
-                    </div>
-                    <div class="list_info">
-                        <label for="">Họ và Tên</label>
-                        <input type="text" placeholder="Enter Name...">
-                    </div>
-                    <div class="list_info">
-                        <label for="">Mật Khẩu</label>
-                        <input type="text" placeholder="Enter Password...">
-                    </div>
-                    <div class="list_info">
-                        <label for="">Ngày Sinh</label>
-                        <input type="date" name="" id="">
-                    </div>
-                    <div class="list_footer">
-                        <div class="footer_info">
-                            <label for="">Chức Vụ</label>
-                            <select name="" id="">
-                                <option value="" disabled selected hidden>Please select...</option>
-                                <option value="TRIAL">Người dùng</option>
-                                <option value="USER">Tuyển dụng</option>
-                                <option value="ADMIN">Admin</option>
-                            </select>
+        <!-- Lớp phủ mờ -->
+        <div class="overlay"></div>
+        <!-- Modal Add User -->
+        <div class="modal_adduser">
+            <div class="modal">
+                <div class="modal_header">
+                    <b>Add User</b>
+                    <a class="btn_closeModal"><i class="fa-solid fa-x"></i></a>
+                </div>
+
+                <div class="modal_body">
+                    <form id="form_addUser" action="" class="modal_list">
+                        <div class="list_info">
+                            <label for="inp_email">Email</label>
+                            <input type="email" id="inp_email" placeholder="Enter Email...">
                         </div>
-                        <div class="footer_info">
-                            <label for="">Giới Tính</label>
-                            <select name="" id="gender">
-                                <option value="" disabled selected hidden>Please select...</option>
-                                <option value="male">Nam</option>
-                                <option value="female">Nữ</option>
-                                <option value="orther">Khác</option>
-                            </select>
+                        <div class="list_info">
+                            <label for="inp_name">Họ và Tên</label>
+                            <input type="text" id="inp_name" placeholder="Enter Name...">
                         </div>
-                    </div>
+                        <div class="list_info">
+                            <label for="inp_pw">Mật Khẩu</label>
+                            <input type="text" id="inp_pw" placeholder="Enter Password...">
+                        </div>
+                        <div class="list_info">
+                            <label for="inp_date">Ngày Sinh</label>
+                            <input type="date" name="" id="inp_date">
+                        </div>
+                        <div class="list_footer">
+                            <div class="footer_info">
+                                <label for="sl_role">Chức Vụ</label>
+                                <select name="" id="sl_role">
+                                    <option value="" disabled selected hidden>Please select...</option>
+                                    <option value="TRIAL">Người dùng</option>
+                                    <option value="USER">Tuyển dụng</option>
+                                    <option value="ADMIN">Admin</option>
+                                </select>
+                            </div>
+                            <div class="footer_info">
+                                <label for="sl_gender">Giới Tính</label>
+                                <select name="" id="sl_gender">
+                                    <option value="" disabled selected hidden>Please select...</option>
+                                    <option value="male">Nam</option>
+                                    <option value="female">Nữ</option>
+                                    <option value="orther">Khác</option>
+                                </select>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal_footer">
+                    <button type="button" class="btn_closeModal btn-secondary">Close</button>
+                    <button type="submit" class="btn_addUser btn-primary">Add</button>
+                </div>
                 </form>
-            </div>
 
-            <div class="modal_footer">
-                <button type="button" class="btn_closeModal btn-secondary">Close</button>
-                <button type="button" class="btn_addUser btn-primary">Add</button>
+
+
             </div>
         </div>
-    </div>
 
-    <!-- js -->
-    <script src="./../asset/layout/layout.js"></script>
-    <script src="./../asset/restAPI.js"></script>
-    <script src="./../js/user_page.js"></script>
+        <!-- js -->
+        <script src="./../asset/alert/alert.js"></script>
+        <script src="./../asset/layout/layout.js"></script>
+        <script src="./../asset/restAPI.js"></script>
+        <script src="./../js/user_page.js"></script>
 </body>
 
 </html>

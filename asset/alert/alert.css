@@ -10,6 +10,7 @@
     margin: 10px 0;
     border-radius: 5px;
     float: right;
+    z-index: 9999;
     animation: faceInOut 2s ease-in-out;
 }
 
