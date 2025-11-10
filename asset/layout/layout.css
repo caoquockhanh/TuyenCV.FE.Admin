@@ -448,6 +448,7 @@ th{
 
 .list_info input{
     width: 100%;
+    height: auto;
     padding: 10px;
     font-size: 0.9em;
     border-radius: 5px;

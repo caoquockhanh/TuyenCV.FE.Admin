@@ -12,6 +12,25 @@ function bindUserPageEvents() {
     });
 }
 
+// Chuyển đổi giới tính render lên table
+function convertGender(gender) {
+    switch(gender){
+        case 'male' : return 'Nam';
+        case 'female' : return 'Nữ';
+        case 'orther' : return 'Khác';
+        default: return 'Không rõ giới tính';
+    }
+}
+
+// Chuyển đổi chức vụ render lên table
+function convertRole(role) {
+    switch(role) {
+        case 'ADMIN': return 'Admin';
+        case 'USER' : return 'Tuyển dụng';
+        case 'TRIAL' : return 'Người dùng';
+    }
+}
+
 // Get API User in Table
 function loadDataTable() {
     getAllUserAPI().then((res) => {
@@ -27,8 +46,8 @@ function loadDataTable() {
             <td>${i.email}</td>
             <td>${i.name}</td>
             <td>${formDate(i.dob)}</td>
-            <td>${i.gender}</td>
-            <td>${i.role}</td>
+            <td>${convertGender(i.gender)}</td>
+            <td>${convertRole(i.role)}</td>
             <td>
                 <button class='btn_edit' data-id='${i.id}'>Sửa</button>
                 <button class='btn_delete' data-id='${i.id}' onclick='btn_deleteUser(${i.id})'>Xoá</button>
@@ -91,6 +110,7 @@ function editUser() {
             //console.log(res);
             const user = res.data;
 
+            // Chuyển tên (Role) thành ID value tương ứng
             const roleMap = {
                 TRIAL: "68eb36e92ed43f8a874cce94",
                 USER: "68eb37182ed43f8a874cce96",
@@ -99,6 +119,7 @@ function editUser() {
             const roleId = roleMap[user.role] || '';
             //console.log("user.role:", user.role); // phải có field id
             //console.log("roleId:", user.role?.id); // phải là string khớp với <option value="...">
+
             $('#inp_email').val(user.email);
             $('#inp_name').val(user.name);
             $('#inp_date').val(user.dob);
