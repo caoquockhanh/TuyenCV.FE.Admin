@@ -14,20 +14,20 @@ function bindUserPageEvents() {
 
 // Chuyển đổi giới tính render lên table
 function convertGender(gender) {
-    switch(gender){
-        case 'male' : return 'Nam';
-        case 'female' : return 'Nữ';
-        case 'orther' : return 'Khác';
+    switch (gender) {
+        case 'male': return 'Nam';
+        case 'female': return 'Nữ';
+        case 'orther': return 'Khác';
         default: return 'Không rõ giới tính';
     }
 }
 
 // Chuyển đổi chức vụ render lên table
 function convertRole(role) {
-    switch(role) {
+    switch (role) {
         case 'ADMIN': return 'Admin';
-        case 'USER' : return 'Tuyển dụng';
-        case 'TRIAL' : return 'Người dùng';
+        case 'USER': return 'Tuyển dụng';
+        case 'TRIAL': return 'Người dùng';
     }
 }
 
@@ -50,7 +50,7 @@ function loadDataTable() {
             <td>${convertRole(i.role)}</td>
             <td>
                 <button class='btn_edit' data-id='${i.id}'>Sửa</button>
-                <button class='btn_delete' data-id='${i.id}' onclick='btn_deleteUser(${i.id})'>Xoá</button>
+                <button class='btn_delete' data-id='${i.id}'>Xoá</button>
             </td>
             `;
             tbody.append(row);
@@ -102,7 +102,6 @@ let id = null;
 
 function editUser() {
     //xử lý nút Sửa User (hiển thị thông tin user lên Modal)
-
     $(document).on('click', '.btn_edit', function () {
         id = $(this).data('id'); // this trỏ đúng
         showModal();
@@ -153,9 +152,39 @@ function editUser() {
                 location.reload();
             }, 2000)
         }).catch((err) => {
-            //console.log(err);
+            //console.log(err.response.status);
             showSuccessAlert("Sửa thất bại!", 'error');
+            if(err.response.status === 401) {
+                showSuccessAlert("Phiên bản đăng nhập đã hết hạn, vui lòng đăng nhập lại!", 'error');
+                setTimeout(() => {
+                    location.href = './../index.html';
+                }, 2000)
+            }
         })
+    })
+}
+
+// Xử lý nút xoá
+function deleteUser() {
+    $(document).on('click', '.btn_delete', function (e) {
+        id = $(this).data('id');
+        // alert(id);
+
+        // Mở modal xác nhận xác user
+        openModalDelete();
+
+        $(document).on('click', '.btn_deleteUser', ((e) => {
+            deleteUserAPI().then((res) => {
+                // console.log(res);
+                showSuccessAlert('Xoá User thành công!', 'success');
+                setTimeout(() => {
+                    location.reload();
+                }, 2000)
+            }).catch((err) => {
+                //console.log(err);
+                showSuccessAlert('Xoá User thất bại!', 'error');
+            })
+        }))
     })
 }
 
@@ -169,4 +198,6 @@ $(document).ready(function () {
     addUser();
     // PUT API sửa User
     editUser();
+    //DELETE API xoá User
+    deleteUser();
 });

@@ -19,7 +19,7 @@ function openModal() {
   const openModal = $('.btn_openModal');
   const modalUser = $('.modal_adduser');
 
-  // 
+  // modal add user
   openModal.click(() => {
     modalUser.show();
     $('.overlay').show();
@@ -29,7 +29,7 @@ function openModal() {
     $('.btn_updateUser').hide();
     $('#inp_email').prop('disabled', false);
     $('.modal_adduser').show();
-  })
+  });
 }
 
 //Show Modal 
@@ -38,6 +38,11 @@ function showModal() {
   $('.overlay').show();
 }
 
+// Show Modal Delete
+function openModalDelete() {
+  $('.modal_deleuser').show();
+  $('.overlay').show();
+}
 
 // Close Modal
 function closeModal() {
@@ -46,8 +51,8 @@ function closeModal() {
   //
   closeModal.click(() => {
     $('.modal_adduser').hide();
+    $('.modal_deleuser').hide();
     $('.overlay').hide();
-
   })
 }
 
@@ -156,7 +161,7 @@ function getOneUserAPI(id) {
   })
 }
 
-// Call put API edit user
+// Call API edit user
 function editUserAPI(name, dob, gender, roleId) {
   const token = getTokenFromCookie();
   return axios({
@@ -174,5 +179,18 @@ function editUserAPI(name, dob, gender, roleId) {
         'id' : roleId,
       }
     })
+  })
+}
+
+//Call API delete user
+function deleteUserAPI() {
+  const token = getTokenFromCookie();
+  return axios({
+    method : 'DELETE',
+    url : url + `api/users/${id}`,
+    headers: {
+      'Authorization' : `Bearer ${token}`,
+      'Content-Type' : 'application/json',
+    },
   })
 }

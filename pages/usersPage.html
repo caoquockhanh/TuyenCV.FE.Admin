@@ -99,8 +99,7 @@
 
             </div>
             <div class="btn_nut">
-                <button class="btn_openModal btn-primary"><i class="fa-solid fa-user-plus"></i> Add
-                    User</button>
+                <button class="btn_openModal btn-primary"><i class="fa-solid fa-user-plus"></i> Thêm mới</button>
 
             </div>
             <div class="content_container">
@@ -174,9 +173,9 @@
                         </div>
                 </div>
                 <div class="modal_footer">
-                    <button type="button" class="btn_closeModal btn-secondary">Close</button>
-                    <button type="submit" class="btn_updateUser btn-success" style="display: none;">Update</button>
-                    <button type="submit" class="btn_addUser btn-primary">Add</button>
+                    <button type="button" class="btn_closeModal btn-secondary">Đóng</button>
+                    <button type="submit" class="btn_updateUser btn-success" style="display: none;">Cập nhật</button>
+                    <button type="submit" class="btn_addUser btn-primary">Thêm</button>
                 </div>
                 </form>
 
@@ -184,6 +183,25 @@
 
             </div>
         </div>
+
+        <!-- Modal comfirm delete -->
+         <div class="modal_deleuser">
+            <div class="modal">
+                <div class="modal_header">
+                    <b>Xác nhận</b>
+                    <a class="btn_closeModal"><i class="fa-solid fa-x"></i></a>
+                </div>
+
+                <div class="modal_body">
+                    <p>Bạn có chắc chắn muốn xoá tài khoản này?</p>
+                </div>
+
+                <div class="modal_footer">
+                    <button type="button" class="btn_closeModal btn-secondary">Đóng</button>
+                    <button type="button" class="btn_deleteUser btn-danger">Xoá</button>
+                </div>
+            </div>
+         </div>
 
         <!-- js -->
         <script src="./../asset/alert/alert.js"></script>

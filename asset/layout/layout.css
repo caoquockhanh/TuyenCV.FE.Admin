@@ -63,6 +63,22 @@ body {
     background-color: #157347;
 }
 
+.btn-danger {
+    width: 140px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    background-color: #DC3545;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-danger:hover {
+    background-color: #BB2D3B;
+}
+
 #container {
     display: flex;
     flex-direction: column;
@@ -378,6 +394,20 @@ th{
     display: flex;
     animation: fadeInModal 0.3s ease-out;
 
+}
+
+.modal_deleuser {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    display: none;
+}
+
+.modal_deleuser.show {
+    display: flex;
+    animation: fadeInModal 0.3s ease-out;
 }
 
 @keyframes fadeInModal {
