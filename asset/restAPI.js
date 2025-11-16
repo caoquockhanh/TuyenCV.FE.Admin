@@ -14,6 +14,21 @@ function deleteCookie(name) {
   document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
+// Xử lý sự kiện cho Modal
+function bindUserPageEvents() {
+    openModal();
+    closeModal();
+
+    // Gắn sự kiện click ngoài modal để đóng
+    $(document).on('click', '.overlay', function (e) {
+        if ($(e.target).hasClass('overlay')) {
+            $('.modal_adduser').hide();
+            $('.modal_deleuser').hide();
+            $('.overlay').hide();
+        }
+    });
+}
+
 //Open Modal
 function openModal() {
   const openModal = $('.btn_openModal');
@@ -29,6 +44,8 @@ function openModal() {
     $('.btn_updateUser').hide();
     $('#inp_email').prop('disabled', false);
     $('.modal_adduser').show();
+    $('.t_addUser').show();
+    $('.t_updateUser').hide();
   });
 }
 
@@ -52,6 +69,7 @@ function closeModal() {
   closeModal.click(() => {
     $('.modal_adduser').hide();
     $('.modal_deleuser').hide();
+    $('.t_updateUser').hide();
     $('.overlay').hide();
   })
 }
@@ -117,11 +135,15 @@ function getUserInfoAPI() {
 }
 
 // Call get all users API
-function getAllUserAPI() {
+function getAllUserAPI(page, size) {
   const token = getTokenFromCookie();
   return axios({
     method: 'GET',
     url: url +'api/users/getalluser',
+    params: {
+      page: page,
+      size: size,
+    },
     headers: {
       'Authorization' : `Bearer ${token}`,
       'Content-Type' : 'application/json',

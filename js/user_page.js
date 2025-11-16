@@ -1,17 +1,3 @@
-// Xử lý sự kiện cho Modal
-function bindUserPageEvents() {
-    openModal();
-    closeModal();
-
-    // Gắn sự kiện click ngoài modal để đóng
-    $(document).on('click', '.overlay', function (e) {
-        if ($(e.target).hasClass('overlay')) {
-            $('.modal_adduser').hide();
-            $('.overlay').hide();
-        }
-    });
-}
-
 // Chuyển đổi giới tính render lên table
 function convertGender(gender) {
     switch (gender) {
@@ -31,15 +17,43 @@ function convertRole(role) {
     }
 }
 
+let itemsPerPage = 10;
+
+// Tạo nút phân trang (gọi lại API)
+function renderPagination(totalPages) {
+  const pagination = document.querySelector('.pagination');
+  pagination.innerHTML = '';
+
+  for (let i = 0; i < totalPages; i++) {
+    const btn = document.createElement('button');
+    btn.textContent = i + 1;
+    btn.classList.add('page-btn');
+    if (i === currentPage) {
+      btn.classList.add('active');
+    }
+    btn.addEventListener('click', () => {
+      if (i !== currentPage) {
+        loadDataTable(i); // Gọi lại API với page mới
+      }
+    });
+    pagination.appendChild(btn);
+  }
+}
+
 // Get API User in Table
-function loadDataTable() {
-    getAllUserAPI().then((res) => {
-        //console.log(res.data);
-        const users = res.data;
-        const tbody = $('table tbody');
+function loadDataTable(page = 0) {
+    currentPage = page;
+
+    getAllUserAPI(page, itemsPerPage).then((res) => {
+        //console.log(res);
+        const users = res.data.data;
+
+        const totalPages = res.data.totalPages;
+
+        const tbody = document.querySelector('table tbody');
         tbody.innerHTML = '';
 
-        for (let i of users) {
+        users.forEach((i) => {
             const row = document.createElement('tr');
             row.innerHTML = `
             <td>${i.id}</td>
@@ -53,8 +67,9 @@ function loadDataTable() {
                 <button class='btn_delete' data-id='${i.id}'>Xoá</button>
             </td>
             `;
-            tbody.append(row);
-        }
+            tbody.appendChild(row);
+        });
+        renderPagination(totalPages);
     }).catch((err) => {
         console.error('Lỗi khi lấy danh sách user:', err);
     })
@@ -129,6 +144,8 @@ function editUser() {
             $('.btn_addUser').hide();
             $('.btn_updateUser').show();
             $('#inp_email').prop('disabled', true);
+            $('.t_updateUser').show();
+            $('.t_addUser').hide();
 
         }).catch((err) => {
             console.log(err);
@@ -148,7 +165,6 @@ function editUser() {
             //console.log(res);
             showSuccessAlert('Cập nhật thành công!', 'success');
             setTimeout(() => {
-                closeModal();
                 location.reload();
             }, 2000)
         }).catch((err) => {
@@ -156,6 +172,7 @@ function editUser() {
             showSuccessAlert("Sửa thất bại!", 'error');
             if(err.response.status === 401) {
                 showSuccessAlert("Phiên bản đăng nhập đã hết hạn, vui lòng đăng nhập lại!", 'error');
+                deleteCookie('authToken');
                 setTimeout(() => {
                     location.href = './../index.html';
                 }, 2000)
